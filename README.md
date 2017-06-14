@@ -21,8 +21,8 @@ bins/
 3 directories
 ```
 
-By default, *only the `terraform` binary for Linux* is downloaded. Also, *this tool can only download
-64-bit binaries* (but it's not difficult to modify the script to allow 32-bit too).
+By default, **only the `terraform` binary for Linux** is downloaded. Also, **this tool can only download
+64-bit binaries** (but it's not difficult to modify the script to allow 32-bit too).
 
 To execute it, simply run the following command:
 
