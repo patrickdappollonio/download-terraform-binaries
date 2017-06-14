@@ -27,6 +27,19 @@ function get_latest_version() {
     # We also need to remove the "v" at the beginning
     # and print...
     version=$(echo ${version} | cut -c 2-)
+
+    if [ "$version" == "" ]; then
+        # Check if there's an API message coming from Github
+        local apimessage=$(echo ${content} | get_json_value "message")
+        if [ ! "$apimessage" == "" ]; then
+            echo -e "Unable to get the latest terraform version. Github API returned an error: ${apimessage}"
+        else
+            echo -e "Unable to get the latest terraform version from Github API!"
+        fi
+
+        exit 1
+    fi
+
     echo -e "${version}"
 }
 
