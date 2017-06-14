@@ -2,6 +2,9 @@ sudo: false
 
 script:
   - |
+    pwd
+
+
     # Execute the script with the defaults (which is, download the terraform
     # binary for Linux)
     bash download_terraform_binaries.sh
