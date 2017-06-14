@@ -2,9 +2,10 @@
 
 [![Build Status](https://travis-ci.org/patrickdappollonio/download-terraform-binaries.svg?branch=master)](https://travis-ci.org/patrickdappollonio/download-terraform-binaries)
 
-A bash script to download Terraform binaries per platform. This script, when ran, will download
-the terraform compiled binary from the [terraform.io website](https://www.terraform.io/) based on
-the Git tags available on Github -- as a way to find the latest version available.
+A bash script to download the most up-to-date Terraform binaries per platform. This script, when executed,
+will download the terraform compiled binary from the [terraform.io website](https://www.terraform.io/)
+based on the [Hashicorp Checkpoint API](https://checkpoint.hashicorp.com/) -- as a way to find the latest
+version available.
 
 ## Usage
 
