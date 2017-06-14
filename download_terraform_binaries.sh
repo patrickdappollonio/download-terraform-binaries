@@ -4,7 +4,7 @@ set -e
 set -o pipefail
 
 # Global configuration
-_HASHICORP_RELEASE_URL="https://api.github.com/repos/hashicorp/terraform/releases/latest"
+_HASHICORP_RELEASE_URL="https://checkpoint-api.hashicorp.com/v1/check/terraform"
 _REQUIRED_APPS=("curl" "sed" "awk" "unzip")
 _AVAILABLE_TF_PLARFORMS=("darwin" "freebsd" "openbsd" "linux" "solaris" "windows")
 
@@ -22,11 +22,11 @@ function get_latest_version() {
     local content=$(curl -s -X GET ${_HASHICORP_RELEASE_URL})
 
     # Get the tag names
-    local version=$(echo ${content} | get_json_value "tag_name")
+    local version=$(echo ${content} | get_json_value "current_version")
 
     # We also need to remove the "v" at the beginning
     # and print...
-    version=$(echo ${version} | cut -c 2-)
+    # version=$(echo ${version} | cut -c 2-)
 
     if [ "$version" == "" ]; then
         # Check if there's an API message coming from Github
