@@ -6,6 +6,15 @@ A bash script to download Terraform binaries per platform. This script, when ran
 the terraform compiled binary from the [terraform.io website](https://www.terraform.io/) based on
 the Git tags available on Github -- as a way to find the latest version available.
 
+## Usage
+
+To execute it, simply run the following command:
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/patrickdappollonio/download-terraform-binaries/master/download_terraform_binaries.sh)
+```
+## Details
+
 The script by default will save the binaries into the current directory in a `bin/` folder. Inside
 that folder, there will be a folder for each platform you requested the download for. For example,
 if you request the plarforms `windows`, `darwin` and `linux`, then you'll get a bin folder with the
@@ -25,13 +34,7 @@ By default, **only the `terraform` binary for Linux** is downloaded (although yo
 see "Configuration" below). Also, **this tool can only download 64-bit binaries** (but it's not
 difficult to modify the script to allow 32-bit too).
 
-To execute it, simply run the following command:
-
-```bash
-bash <(curl -s https://raw.githubusercontent.com/patrickdappollonio/download-terraform-binaries/master/download_terraform_binaries.sh)
-```
-
-### Configuration
+## Configuration
 
 You can configure certain things such as the download directory (which, when set, it will avoid creating
 the `bin/` folder in the current directory) where the folder per-platform will be created or what platforms
