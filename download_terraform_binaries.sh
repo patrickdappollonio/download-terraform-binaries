@@ -157,6 +157,7 @@ function main() {
             echo -e "Requested platform, \"${pl}\" is not available as a terraform binary!"
         else
             download_terraform_binary ${pl} ${tf_version} ${TF_DOWNLOAD_PATH}
+            echo -e ""
         fi
     done
 
