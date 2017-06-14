@@ -24,19 +24,9 @@ function get_latest_version() {
     # Get the tag names
     local version=$(echo ${content} | get_json_value "current_version")
 
-    # We also need to remove the "v" at the beginning
-    # and print...
-    # version=$(echo ${version} | cut -c 2-)
-
+    # Check if we didn't received a version number
     if [ "$version" == "" ]; then
-        # Check if there's an API message coming from Github
-        local apimessage=$(echo ${content} | get_json_value "message")
-        if [ ! "$apimessage" == "" ]; then
-            echo -e "Unable to get the latest terraform version. Github API returned an error: ${apimessage}"
-        else
-            echo -e "Unable to get the latest terraform version from Github API!"
-        fi
-
+        echo -e "Unable to get the latest Terraform version. Please check https://checkpoint.hashicorp.com for details."
         exit 1
     fi
 
