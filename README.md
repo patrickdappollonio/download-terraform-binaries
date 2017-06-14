@@ -7,6 +7,10 @@ will download the terraform compiled binary from the [terraform.io website](http
 based on the [Hashicorp Checkpoint API](https://checkpoint.hashicorp.com/) -- as a way to find the latest
 version available.
 
+Unfortunately, Hashicorp does not provide a way to download the latest version of their software in an easy way,
+[and with a fair reason](https://github.com/hashicorp/terraform/issues/9803#issuecomment-257903082), hence the
+existence of the page you're reading.
+
 ## Usage
 
 To execute it, simply run the following command:
