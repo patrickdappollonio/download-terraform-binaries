@@ -8,7 +8,7 @@ script:
 
     # Execute the script with the defaults (which is, download the terraform
     # binary for Linux)
-    bash download_terraform_binaries.sh
+    bash -x download_terraform_binaries.sh
 
     # Check if there's a file in the expected location, fail otherwise
     if [ ! -f ./bins/linux/terraform ]; then
