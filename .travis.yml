@@ -1,5 +1,11 @@
+# The container-based testing process looks nice!
 sudo: false
 dist: trusty
+
+# Setting the language to Go, just because!
+language: go
+go:
+  - 1.8
 
 script:
   - |
