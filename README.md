@@ -21,14 +21,17 @@ bins/
 3 directories
 ```
 
-By default, **only the `terraform` binary for Linux** is downloaded. Also, **this tool can only download
-64-bit binaries** (but it's not difficult to modify the script to allow 32-bit too).
+By default, **only the `terraform` binary for Linux** is downloaded (although you can change that,
+see "Configuration" below). Also, **this tool can only download 64-bit binaries** (but it's not
+difficult to modify the script to allow 32-bit too).
 
 To execute it, simply run the following command:
 
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/patrickdappollonio/download-terraform-binaries/master/download_terraform_binaries.sh)
 ```
+
+### Configuration
 
 You can configure certain things such as the download directory (which, when set, it will avoid creating
 the `bin/` folder in the current directory) where the folder per-platform will be created or what platforms
