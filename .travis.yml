@@ -2,13 +2,8 @@
 sudo: false
 dist: trusty
 
-# Setting the language to Go, just because!
-language: go
-go:
-  - 1.8
-
-install:
-  - # this prevents travis to run "go get"
+# Setting the language to C, just because!
+language: c
 
 script:
   - |
