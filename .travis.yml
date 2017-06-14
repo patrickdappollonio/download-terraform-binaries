@@ -12,17 +12,18 @@ install:
 
 script:
   - |
-
     # Execute the script with the defaults (which is, download the terraform
     # binary for Linux)
     bash -x download_terraform_binaries.sh
 
+  - |
     # Check if there's a file in the expected location, fail otherwise
     if [ ! -f ./bins/linux/terraform ]; then
       echo -e "Failed! File \"terraform\" not found."
       exit 1
     fi
 
+  - |
     # As an extra sanity check, check if we can get the terraform version
     ./bins/linux/terraform -v
 
