@@ -1,0 +1,13 @@
+sudo: false
+
+script:
+  - |
+    bash download_terraform_binaries.sh
+
+    if [ ! -f ./bins/linux/terraform ]; then
+      echo -e "Failed! File \"terraform\" not found."
+      exit 1
+    fi
+
+    ./bins/linux/terraform -v
+
