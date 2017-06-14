@@ -38,6 +38,11 @@ function download_terraform_binary() {
     local version=$2
     local destination=$3
 
+    # Check if directory exists
+    if [ ! -d "$destination" ]; then
+        mkdir -p "${destination}"
+    fi
+
     # Generate the link needed to download the binary.
     local filename="terraform_${version}_${platform}"   # the filename is usually "terraform_0.9.3_windows"
     local zipfile="${filename}_amd64.zip"               # the zipfile is the name including the architecture and the extension
