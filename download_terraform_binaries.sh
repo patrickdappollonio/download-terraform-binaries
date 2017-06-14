@@ -79,7 +79,7 @@ function download_terraform_binary() {
     fi
 
     echo -e " - Terraform for ${platform} successfully downloaded at \"${destination}/${platform}/${bin_filename}\"!"
-    echo -e $(file "${destination}/${platform}/${bin_filename}")
+    echo -e "   $(file "${destination}/${platform}/${bin_filename}")"
 }
 
 # Check if directory exists. The unique parameter used is the first one
