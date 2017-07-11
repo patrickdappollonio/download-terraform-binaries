@@ -6,7 +6,7 @@ dist: trusty
 language: c
 
 script:
-  - bash -x download_terraform_binaries.sh
+  - bash download_terraform_binaries.sh
   - if [ ! -f "$HOME/terraform/linux/terraform" ]; then
       echo -e "Failed! File \"terraform\" not found.";
       exit 1;
