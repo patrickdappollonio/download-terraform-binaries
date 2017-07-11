@@ -7,9 +7,9 @@ language: c
 
 script:
   - bash -x download_terraform_binaries.sh
-  - if [ ! -f ./bins/linux/terraform ]; then
+  - if [ ! -f "$HOME/terraform/linux/terraform" ]; then
       echo -e "Failed! File \"terraform\" not found.";
       exit 1;
     fi
-  - ./bins/linux/terraform -v
+  - $HOME/terraform/linux/terraform -v
 

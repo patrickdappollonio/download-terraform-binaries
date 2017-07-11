@@ -20,14 +20,14 @@ bash <(curl -s https://raw.githubusercontent.com/patrickdappollonio/download-ter
 ```
 ## Details
 
-The script by default will save the binaries into the current directory in a `bin/` folder. Inside
+The script by default will save the binaries into the `$HOME` directory in a `terraform/` folder. Inside
 that folder, there will be a folder for each platform you requested the download for. For example,
 if you request the plarforms `windows`, `darwin` and `linux`, then you'll get a bin folder with the
 following structure:
 
 ```
-$ tree bins/
-bins/
+$ tree $HOME/terraform/
+terraform/
 ├── darwin
 ├── linux
 └── windows
@@ -42,7 +42,7 @@ difficult to modify the script to allow 32-bit too).
 ## Configuration
 
 You can configure certain things such as the download directory (which, when set, it will avoid creating
-the `bin/` folder in the current directory) where the folder per-platform will be created or what platforms
+the `$HOME/terraform/` folder in the current directory) where the folder per-platform will be created or what platforms
 you want to download, separated by comma.
 
 To change the download location, set the`$TF_DOWNLOAD_PATH` environment variable to an existent folder. To

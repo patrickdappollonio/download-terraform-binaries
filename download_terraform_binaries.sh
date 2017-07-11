@@ -12,7 +12,7 @@ _AVAILABLE_TF_PLARFORMS=("darwin" "freebsd" "openbsd" "linux" "solaris" "windows
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Configurable variables
-TF_DOWNLOAD_PATH=${TF_DOWNLOAD_PATH:-"${DIR}/bins"}
+TF_DOWNLOAD_PATH=${TF_DOWNLOAD_PATH:-"${HOME}/terraform"}
 TF_PLATFORMS=${TF_PLATFORMS:-"linux"}
 
 # This function checks against the Github API url to find
@@ -146,7 +146,7 @@ function main() {
     check_installed_apps
 
     # If the user passed a download path, check that it does exists
-    if [ ! "$TF_DOWNLOAD_PATH" == "$DIR/bins" ]; then
+    if [ ! "$TF_DOWNLOAD_PATH" == "${HOME}/terraform" ]; then
         check_directory_exists $TF_DOWNLOAD_PATH
     fi
 
