@@ -5,7 +5,8 @@ set -o pipefail
 
 # Global configuration
 _HASHICORP_RELEASE_URL="https://checkpoint-api.hashicorp.com/v1/check/terraform"
-_REQUIRED_APPS=("curl" "sed" "awk" "unzip")
+_HASHICORP_RELEASE_HISTORY="https://releases.hashicorp.com/terraform/"
+_REQUIRED_APPS=("curl" "sed" "awk" "unzip" "cut")
 _AVAILABLE_TF_PLARFORMS=("darwin" "freebsd" "openbsd" "linux" "solaris" "windows")
 
 # Extra global variables for internal use
@@ -14,6 +15,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Configurable variables
 TF_DOWNLOAD_PATH=${TF_DOWNLOAD_PATH:-"${HOME}/terraform"}
 TF_PLATFORMS=${TF_PLATFORMS:-"linux"}
+TF_VERSION=${TF_VERSION:-""}
 
 # This function checks against the Github API url to find
 # the latest version of the terraform binary.
@@ -31,6 +33,34 @@ function get_latest_version() {
     fi
 
     echo -e "${version}"
+}
+
+# This function checks if the user-defined terraform version
+# do exists in the terraform releases page
+function check_version_exists() {
+    # Download the contents of the Terraform releases page
+    local contents=$(curl -s -X GET ${_HASHICORP_RELEASE_HISTORY})
+
+    # Get the version numbers
+    local versions=$(echo "${contents}" | grep "terraform/0" | cut -d/ -f 3)
+
+    # Check if we were able to find versions
+    if [ "$versions" == "" ]; then
+        echo -e "Unable to get all available Terraform versions. Please check https://releases.hashicorp.com/terraform/ for details."
+        exit 1
+    fi
+
+    # Convert them to an array
+    local version_array=(${versions// / })
+
+    # Find if the version is in the array
+    for i in ${version_array[@]}; do
+        if [ "$1" == "$i" ]; then
+            return 0
+        fi
+    done
+
+    return 1
 }
 
 # Download the terraform binary for 64-bits from the website. This function
@@ -150,8 +180,21 @@ function main() {
         check_directory_exists $TF_DOWNLOAD_PATH
     fi
 
-    # Get the version and save it into a variable for later use
-    local tf_version=$(get_latest_version)
+    # Check if the user passed a version, and if so, check if it exists
+    # else, get the latest version
+    local tf_version=""
+    if [ ! "$TF_VERSION" == "" ]; then
+        if check_version_exists ${TF_VERSION}; then
+            tf_version=${TF_VERSION}
+        else
+            echo -e "The version defined, ${TF_VERSION} never existed in Terraform."
+            echo -e "Check all available versions at https://releases.hashicorp.com/terraform/"
+            exit 1
+        fi
+    else
+        # Get the version and save it into a variable for later use
+        tf_version=$(get_latest_version)
+    fi
 
     # Check if the platform we're trying to download are available
     local requested_platforms=($TF_PLATFORMS)

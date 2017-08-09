@@ -12,4 +12,11 @@ script:
       exit 1;
     fi
   - $HOME/terraform/linux/terraform -v
+  - rm -rf $HOME/terraform/linux/terraform
+  - TF_VERSION=0.9.11 bash download_terraform_binaries
+  - if [ ! -f "$HOME/terraform/linux/terraform" ]; then
+      echo -e "Failed! File \"terraform\" not found.";
+      exit 1;
+    fi
+  - $HOME/terraform/linux/terraform -v
 
